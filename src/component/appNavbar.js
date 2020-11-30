@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  Container
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Container } from 'reactstrap';
 
 const AppNavbar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
