@@ -1,12 +1,19 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import AppNavbar from './component/appNavbar';
+import Login from './component/login';
 
-function App() {
-  return (
-    <div className="App">
-     <h1>Hiii</h1>
-    </div>
-  );
+class App extends Component{
+    render() {
+        return (
+            <div className="App">
+                <AppNavbar />
+                <Login />
+            </div>
+        );
+    }
 }
 
 export default App;
