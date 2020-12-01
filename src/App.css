@@ -1,8 +1,9 @@
 .tab {
-    border-bottom: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-}
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid#dee2e6;
+    border-left: 1px solid #dee2e6;
+    border-radius: 5px;
+}  
 
 .tabpane {
     padding: 20px;
