@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Alert, TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Label, Input, Form } from 'reactstrap';
+import { Alert, TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Label, Input, Form, Spinner } from 'reactstrap';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { register } from '../actions/registerAction';
-import { login } from '../actions/loginActions';
-import PropTypes from 'prop-types'
+import { loginStudent, loginFaculty } from '../actions/loginActions';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -16,14 +17,17 @@ class Login extends Component {
         password: '',
         year: null,
         email_login: '',
-        password_login: ''
+        password_login: '',
+        redirect: false,
+        type: null
     }
 
     static propTypes = {
         register: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool.isRequired,
         login_msg: PropTypes.string.isRequired,
-        reg_msg: PropTypes.string.isRequired
+        reg_msg: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired
     }
 
     onChange = (e) => {
@@ -38,18 +42,17 @@ class Login extends Component {
             name, prn, email, password, year
         };
         this.props.register(newUser);
-        document.getElementById("register").reset();
     }
 
     onSubmitLogin = (e) => {
         e.preventDefault();
-        console.log(this.state.email_login, this.state.password_login);
+    
         const { email_login, password_login } = this.state;
         const newUser = {
             email_login, password_login
         };
-        this.props.login(newUser);
-        console.log(this.props.msg);
+        if(this.state.type === "Faculty") this.props.loginFaculty(newUser);
+        else this.props.loginStudent(newUser);
     }
 
     render() {
@@ -79,7 +82,7 @@ class Login extends Component {
                         </Nav>
                         <TabContent activeTab={this.state.activeTab} className="tab">
                             <TabPane tabId="1" className="tabpane">
-                            { this.props.login_msg ? <Alert color="danger">{`${this.props.msg}`}</Alert> : null}
+                            { this.props.login_msg ? <Alert color="danger">{this.props.login_msg}</Alert> : null}
                             <div className="row row-content">
                                 <div className="col-12">
                                     <Row className="form-group">
@@ -95,10 +98,24 @@ class Login extends Component {
                                             </Col>
                                     </Row>
                                     <Row className="form-group">
+                                        <Label htmlfor="type" md={2}>Type</Label>
+                                        <Col md={10}>
+                                            <Input type="select" name="type" id="type" onChange={this.onChange}>
+                                                <option>select</option>
+                                                <option>Faculty</option>
+                                                <option>Student</option>
+                                            </Input>
+                                        </Col>
+                                    </Row>
+                                    <Row className="form-group">
                                         <Col md={{size:10, offset: 2}}>
                                             <Button type="submit" color="primary" onClick={this.onSubmitLogin}>Login</Button>
                                         </Col>
                                     </Row>
+                                    { this.props.isAuthenticated === true ?
+                                        this.props.type === "Faculty" ? <Redirect to="/facultymain" /> : <Redirect to="/studentmain" /> :
+                                        null
+                                    }
                                 </div>
                             </div>
                             </TabPane>
@@ -172,8 +189,9 @@ const mapStateToProps = state => {
         email: state.login.email,
         isAuthenticated: state.login.isAuthenticated,
         login_msg: state.login.msg,
-        reg_msg: state.register.msg
+        reg_msg: state.register.msg,
+        type: state.login.type
     }
 }
 
-export default connect(mapStateToProps, { register, login })(Login);
+export default connect(mapStateToProps, { register, loginStudent, loginFaculty })(Login);

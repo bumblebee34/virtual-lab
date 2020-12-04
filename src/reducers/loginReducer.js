@@ -1,11 +1,12 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions/types';
 
 const initialState = {
     id: null,
     name: null,
     email: null,
-    isAuthenticated: null,
-    msg: null
+    isAuthenticated: false,
+    msg: null,
+    type: null
 }
 
 export default function( state = initialState, action) {
@@ -17,7 +18,8 @@ export default function( state = initialState, action) {
                 name: action.payload.name,
                 email: action.payload.email,
                 isAuthenticated: true,
-                msg: null
+                msg: null,
+                type: action.payload.type
             }
         case LOGIN_FAIL:
             return{
@@ -27,6 +29,15 @@ export default function( state = initialState, action) {
                 email: null,
                 isAuthenticated: false,
                 msg: action.payload.msg
+            }
+        case LOGOUT:
+            return{
+                ...state,
+                id: null,
+                name: null,
+                email: null,
+                isAuthenticated: false,
+                msg: null
             }
         default: return state;
     }
