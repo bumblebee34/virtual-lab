@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Container, ListGroup, ListGroupItemHeading, ListGroupItem, ListGroupItemText, Input, Button, Form, FormGroup, Label } from 'reactstrap';
-import imgd from '../logo.jpeg'
+import imgd from '../shift.png'
 
 class demo extends Component {
     render(){

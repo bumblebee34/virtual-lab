@@ -33,21 +33,19 @@ class AppNavbar extends Component {
     render() {
         return (
             <div>
-            <Navbar color="dark" dark expand="sm" className="mb-5">
-                <Container>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <NavbarBrand href="/">
-                            WCE Virtual Labs
-                        </NavbarBrand>
-                        <Nav className="ml-auto" navbar>
-                            {this.props.isAuthenticated === true ? 
-                            <NavItem>
-                                <NavLink style={{ cursor: "pointer" }} onClick={this.props.logout}>Logout</NavLink>
-                            </NavItem> : null  
-                        }  
-                        { this.props.isAuthenticated === false ? <Redirect to="/" /> : null}
-                        </Nav>
+                <Navbar color="dark" dark expand="sm" className="mb-5">
+                    <Container>
+                        <NavbarBrand>WCE Virtual Labs</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                {this.props.isAuthenticated === true ? 
+                                <NavItem>
+                                    <NavLink style={{ cursor: "pointer" }} onClick={this.props.logout}>Logout</NavLink>
+                                </NavItem> : null  
+                            }  
+                            { this.props.isAuthenticated === false ? <Redirect to="/" /> : null}
+                            </Nav>
                         </Collapse>
                     </Container>
                 </Navbar>
