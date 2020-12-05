@@ -43,7 +43,7 @@ class AppNavbar extends Component {
                         <Nav className="ml-auto" navbar>
                             {this.props.isAuthenticated === true ? 
                             <NavItem>
-                                <NavLink onClick={this.props.logout}><Button color="warning">Logout</Button></NavLink>
+                                <NavLink style={{ cursor: "pointer" }} onClick={this.props.logout}>Logout</NavLink>
                             </NavItem> : null  
                         }  
                         { this.props.isAuthenticated === false ? <Redirect to="/" /> : null}

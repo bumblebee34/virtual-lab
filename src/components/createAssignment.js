@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Button, ButtonGroup, Form, Container,Text} from 'react-bootstrap';
+import {Button, ButtonGroup, Form, Container} from 'react-bootstrap';
 
 const CreateAssignment = () => {
   const [inputList, setInputList] = useState([]);
@@ -31,22 +31,22 @@ const CreateAssignment = () => {
   const date=Date().toLocaleString();
 
   return (
-    <Container  className="cont-createassignment">
-        <h2>Create Assigment</h2>  
-        <Form.Label>Assigment Name: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Assigment Name" />
-        <Form.Label>Due Date: </Form.Label>
-        <Form.Control type="date" value={date}/>
-        <ButtonGroup style={{margin: "10px"}}>
-            <Button onClick={onAddtxtClick}>Add Descrption</Button>
-            <Button onClick={onAddimgClick}>Add Image</Button>
-            <Button onClick={onAddvidClick}>Add Video</Button>
-        </ButtonGroup>
-        {inputList}
-        <Button style={{margin: "10px"}}>Genrate</Button>
-        <Button style={{margin: "10px"}}>Cancel</Button>
-    </Container>
-  );
+        <Container  className="cont-createassignment">
+            <h2>Create Assigment</h2> 
+            <Form.Label>Assigment Name: </Form.Label>
+            <Form.Control type="text" placeholder="Enter Assigment Name" />
+            <Form.Label>Due Date: </Form.Label>
+            <Form.Control type="date" value={date}/>
+            <ButtonGroup style={{margin: "10px"}}>
+                <Button onClick={onAddtxtClick}>Add Descrption</Button>
+                <Button onClick={onAddimgClick}>Add Image</Button>
+                <Button onClick={onAddvidClick}>Add Video</Button>
+            </ButtonGroup>
+            {inputList}
+            <Button style={{margin: "10px"}}>Genrate</Button>
+            <Button style={{margin: "10px"}}>Cancel</Button>
+        </Container>
+    );
 };
 
 export default CreateAssignment;
