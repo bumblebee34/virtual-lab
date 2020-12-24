@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
   Card, CardImg, CardImgOverlay, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Container, Row
+  CardTitle, CardSubtitle, Button, Container, Row, Breadcrumb, BreadcrumbItem
 } from 'reactstrap';
 import image from '../logo.jpeg';
 import { ASSIGNMENTS } from '../assets/assignments/assignments';
+import { Link } from 'react-router-dom';
 
 function RenderAssignment({assignment , onClick}) {
     return(
@@ -37,9 +38,13 @@ class SubjectAssignments extends Component {
 
         return (
             <Container>
-               <Row>
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/studentmain">Dashboard</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Subject Name</BreadcrumbItem>
+                </Breadcrumb>
+                <Row>
                    {assignments}
-               </Row>
+                </Row>
             </Container>
         );
     }

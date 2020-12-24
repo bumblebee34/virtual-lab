@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Jumbotron, Container, ListGroup, ListGroupItemHeading, ListGroupItem, ListGroupItemText, Input, Button, Form, FormGroup, Label } from 'reactstrap';
-import imgd from '../shift.png'
+import { Jumbotron, Container, ListGroup, ListGroupItemHeading, ListGroupItem, ListGroupItemText, Input, Button, Form, FormGroup, Label, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import imgd from '../shift.png';
+import { Link } from 'react-router-dom';
 
 class demo extends Component {
     render(){
         return(
             <Container>
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/studentmain">Dashboard</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/subjectassignments">Subject</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Assignment 1</BreadcrumbItem>
+                </Breadcrumb>
                 <Jumbotron>
                     <h1 className="display-3">Understanding Shift Cipher</h1>
                     <p className="lead"></p>

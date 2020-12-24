@@ -1,52 +1,81 @@
-import React,{useState} from "react";
-import {Button, ButtonGroup, Form, Container} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Col, Button, ButtonGroup, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
-const CreateAssignment = () => {
-  const [inputList, setInputList] = useState([]);
+class CreateAssignment extends Component {
 
-  const onAddtxtClick = event => {
-    setInputList(inputList.concat(<><textarea 
-      className="md-textarea form-control" 
-      placeholder="Enter Description" 
-      key={inputList.length} 
-      /><br/></>));
-  };
+    state = {
+        list: []
+    }
 
-  const onAddimgClick = event => {
-    setInputList(inputList.concat(<> <input
-        type="file"
-        className="md-textarea form-control"        
-        key={inputList.length} 
-        /><br/></>));
-  };
+    AddText = e => {
+        this.setState({
+            list : this.state.list.concat(
+                <FormGroup row>
+                    <Label htnlFor="textarea" md={2}>Text</Label>
+                    <Col md={10}>
+                    <Input type="textarea" name="textarea" id="textarea" />
+                    </Col>
+                </FormGroup>
+            )
+        })
+    }
 
-  const onAddvidClick = event => {
-    setInputList(inputList.concat(<> <input
-        type="url" placeholder="Enter url"
-        className="md-textarea form-control"     
-        key={inputList.length} 
-        /><br/></>));
-  };
+    AddImage = e => {
+        this.setState({
+            list : this.state.list.concat(
+                <FormGroup row>
+                    <Label htnlFor="image" md={2}>Image</Label>
+                    <Col md={10}>
+                    <Input type="file" name="image" id="image" />
+                    </Col>
+                </FormGroup>
+            )
+        })
+    }
 
-  const date=Date().toLocaleString();
+    AddVideo = e => {
+        this.setState({
+            list : this.state.list.concat(
+                <FormGroup row>
+                    <Label htnlFor="video" md={2}>Video</Label>
+                    <Col md={10}>
+                    <Input type="text" name="video" id="video" placeholder="Please left click on the video and copy the Copy embed code and paste it here" />
+                    </Col>
+                </FormGroup>
+            )
+        })
+    }
 
-  return (
-        <Container  className="cont-createassignment">
-            <h2>Create Assigment</h2> 
-            <Form.Label>Assigment Name: </Form.Label>
-            <Form.Control type="text" placeholder="Enter Assigment Name" />
-            <Form.Label>Due Date: </Form.Label>
-            <Form.Control type="date" value={date}/>
-            <ButtonGroup style={{margin: "10px"}}>
-                <Button onClick={onAddtxtClick}>Add Descrption</Button>
-                <Button onClick={onAddimgClick}>Add Image</Button>
-                <Button onClick={onAddvidClick}>Add Video</Button>
-            </ButtonGroup>
-            {inputList}
-            <Button style={{margin: "10px"}}>Genrate</Button>
-            <Button style={{margin: "10px"}}>Cancel</Button>
-        </Container>
-    );
-};
+    render() {
+        return (
+            <Container>
+                <Form>
+                    <FormGroup row>
+                        <Label htmlFor="name" md={2}>Assignment Name</Label>
+                        <Col md={10}>
+                        <Input type="text" name="name" id="name" placeholder="Enter assignment name here" />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label htmlFor="duedate" md={2}>Due Date</Label>
+                        <Col md={3}>
+                        <Input type="date" name="duedate" id="duedate" placeholder="Choose due date"/>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Col md={{ size: 'auto', offset: 2 }}>
+                            <ButtonGroup>
+                                <Button color="primary" onClick={this.AddText}>Text</Button>
+                                <Button color="primary" onClick={this.AddImage}>Image</Button>
+                                <Button color="primary" onClick={this.AddVideo}>Video</Button>
+                            </ButtonGroup>
+                        </Col>
+                    </FormGroup>
+                    {this.state.list}
+                </Form>
+            </Container>
+        );
+    }
+}
 
 export default CreateAssignment;

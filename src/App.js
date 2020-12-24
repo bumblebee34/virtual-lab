@@ -18,7 +18,7 @@ class App extends Component{
         return (
             <Provider store={store} >
                 <BrowserRouter>
-                <AppNavbar />
+                    <AppNavbar />
                     <Switch>
                         <Route exact path='/' component={Login} />
                         <Route path='/facultymain' component={FacultyMain} />
