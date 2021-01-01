@@ -68,6 +68,7 @@ class CreateAssignment extends Component {
                                 <Button color="primary" onClick={this.AddText}>Text</Button>
                                 <Button color="primary" onClick={this.AddImage}>Image</Button>
                                 <Button color="primary" onClick={this.AddVideo}>Video</Button>
+                                <Button color="primary" onClick={this.AddVideo}>Power Point</Button>
                             </ButtonGroup>
                         </Col>
                     </FormGroup>

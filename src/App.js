@@ -12,6 +12,10 @@ import StudentMain from './components/studentMain';
 import SubjectAssignments from './components/subjectAssignments';
 import CreateAssignment from './components/createAssignment';
 import demo from './components/demo';
+import demo1 from './components/demo1';
+import demo2 from './components/demo2';
+import demo3 from './components/demo3';
+import demo4 from './components/demo4';
 
 class App extends Component{
     render() {
@@ -26,6 +30,10 @@ class App extends Component{
                         <Route path='/subjectassignments' component={SubjectAssignments} />
                         <Route path='/create' component={CreateAssignment} />
                         <Route path='/demo' component={demo} />
+                        <Route path='/demo1' component={demo1} />
+                        <Route path='/demo2' component={demo2} />
+                        <Route path='/demo3' component={demo3} />
+                        <Route path='/demo4' component={demo4} />
                     </Switch>
                 </BrowserRouter>
             </Provider>
