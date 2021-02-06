@@ -8,45 +8,82 @@ class demo extends Component {
     state = {
         text:"",
         cipher:"",
-        key: 0
+        key: 0,
+        brute: [],
+        bruteStr: "",
     }
 
     caesarShift = function (str, amount) {
         // Wrap the amount
         if (amount < 0) {
-          return this.caesarShift(str, amount + 26);
+            return this.caesarShift(str, amount + 26);
         }
-      
+        
         // Make an output variable
         var output = "";
-      
+        
         // Go through each character
         for (var i = 0; i < str.length; i++) {
-          // Get the character we'll be appending
-          var c = str[i];
-      
-          // If it's a letter...
-          if (c.match(/[a-z]/i)) {
-            // Get its code
-            var code = str.charCodeAt(i);
-      
-            // Uppercase letters
-            if (code >= 65 && code <= 90) {
-              c = String.fromCharCode(((code - 65 + amount) % 26) + 65);
+            // Get the character we'll be appending
+            var c = str[i];
+        
+            // If it's a letter...
+            if (c.match(/[a-z]/i)) {
+                // Get its code
+                var code = str.charCodeAt(i);
+            
+                // Uppercase letters
+                if (code >= 65 && code <= 90) {
+                    c = String.fromCharCode(((code - 65 + amount) % 26) + 65);
+                }
+            
+                // Lowercase letters
+                else if (code >= 97 && code <= 122) {
+                    c = String.fromCharCode(((code - 97 + amount) % 26) + 97);
+                }
             }
-      
-            // Lowercase letters
-            else if (code >= 97 && code <= 122) {
-              c = String.fromCharCode(((code - 97 + amount) % 26) + 97);
-            }
-          }
-      
-          // Append
-          output += c;
+    
+        // Append
+        output += c;
         }
-        console.log(this.state.key);
         return output;
-      }
+    }
+
+    bruteForce = (str) => {
+
+        for(var j = 1 ; j < 25 ; j++){
+
+            var amount = j
+            // Make an output variable
+            var output = "";
+
+            // Go through each character
+            for (var i = 0; i < str.length; i++) {
+                var c = str[i];
+            
+                // If it's a letter...
+                if (c.match(/[a-z]/i)) {
+                    // Get its code
+                    var code = str.charCodeAt(i);
+                
+                    // Uppercase letters
+                    if (code >= 65 && code <= 90) {
+                        c = String.fromCharCode(((code - 65 + amount) % 26) + 65);
+                    }
+                
+                    // Lowercase letters
+                    else if (code >= 97 && code <= 122) {
+                        c = String.fromCharCode(((code - 97 + amount) % 26) + 97);
+                    }
+                }
+        
+                // Append
+                output += c;
+            }
+            console.log(output);
+            this.setState({ brute: this.state.brute.concat(<h4>{output}</h4>) });
+        }
+    }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -175,6 +212,18 @@ class demo extends Component {
                             <br/>
                         </ListGroupItemText>
                     </ListGroupItem>
+                    {/* <ListGroupItem>
+                        <ListGroupItemHeading>Brute Force Attack</ListGroupItemHeading>
+                        <ListGroupItemText>
+                            <Input type="textarea" id="bruteStr" name="bruteStr" onChange={this.handleChange}/>
+                            <br/>
+                            <Button color="primary" 
+                                onClick={() => this.bruteForce(this.state.bruteStr)}>
+                                Submit Answer
+                            </Button>
+                            {this.state.brute}
+                        </ListGroupItemText>
+                    </ListGroupItem> */}
                     <ListGroupItem>
                         <ListGroupItemHeading>Q) Explain in brief the working of shift Cipher/Ceaser Cipher?</ListGroupItemHeading>
                         <ListGroupItemText>

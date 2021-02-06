@@ -34,6 +34,7 @@ class App extends Component{
                         <Route path='/demo2' component={demo2} />
                         <Route path='/demo3' component={demo3} />
                         <Route path='/demo4' component={demo4} />
+
                     </Switch>
                 </BrowserRouter>
             </Provider>

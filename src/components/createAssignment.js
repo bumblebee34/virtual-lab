@@ -46,6 +46,19 @@ class CreateAssignment extends Component {
         })
     }
 
+    AddPowerpoint = e => {
+        this.setState({
+            list : this.state.list.concat(
+                <FormGroup row>
+                    <Label htnlFor="video" md={2}>Power Point</Label>
+                    <Col md={10}>
+                    <Input type="text" name="video" id="video" placeholder="Please copy embed code and paste it here" />
+                    </Col>
+                </FormGroup>
+            )
+        })
+    }
+
     render() {
         return (
             <Container>
@@ -68,7 +81,7 @@ class CreateAssignment extends Component {
                                 <Button color="primary" onClick={this.AddText}>Text</Button>
                                 <Button color="primary" onClick={this.AddImage}>Image</Button>
                                 <Button color="primary" onClick={this.AddVideo}>Video</Button>
-                                <Button color="primary" onClick={this.AddVideo}>Power Point</Button>
+                                <Button color="primary" onClick={this.AddPowerpoint}>Power Point</Button>
                             </ButtonGroup>
                         </Col>
                     </FormGroup>

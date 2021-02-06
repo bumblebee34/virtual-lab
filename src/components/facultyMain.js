@@ -37,9 +37,63 @@ class FacultyMain extends Component {
                 <Row>
                     <Button color="primary" onClick={() => this.props.history.push("/create")}>Create Assignment</Button>
                 </Row>
-               <Row>
-                   {assignments}
-               </Row>
+                <Row className="d-flex">
+                    <div className="col-md-3 m-4">
+                        <Card>
+                            <CardImg top width="100%" src={image} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle tag="h5">Shift Cipher</CardTitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
+                                <CardText> Due: 20/12/2020 </CardText>
+                                <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-md-3 m-4 d-flex">
+                        <Card>
+                            <CardImg top width="100%" src={image} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle tag="h5">Hill Cipher</CardTitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
+                                <CardText> Due: 20/12/2020 </CardText>
+                                <Button color="primary" onClick={() => this.props.history.push('/demo1')}>Open</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-md-3 m-4 d-flex">
+                        <Card>
+                            <CardImg top width="100%" src={image} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle tag="h5">RSA Algorithm</CardTitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
+                                <CardText> Due: 20/12/2020 </CardText>
+                                <Button color="primary" onClick={() => this.props.history.push('/demo2')}>Open</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-md-3 m-4 d-flex">
+                        <Card>
+                            <CardImg top width="100%" src={image} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle tag="h5">Steganography</CardTitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
+                                <CardText> Due: 20/12/2020 </CardText>
+                                <Button color="primary" onClick={() => this.props.history.push('/demo3')}>Open</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-md-3 m-4 d-flex">
+                        <Card>
+                            <CardImg top width="100%" src={image} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle tag="h5">Data Encryption Standard DES</CardTitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
+                                <CardText> Due: 20/12/2020 </CardText>
+                                <Button color="primary" onClick={() => this.props.history.push('/demo4')}>Open</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
+                </Row>
             </Container>
         );
     }
