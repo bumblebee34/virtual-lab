@@ -4,6 +4,7 @@ import imgd from '../shift.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class demo extends Component {
 
@@ -101,13 +102,99 @@ class demo extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    show = () => {
-        console.log(this.state.sub1);
-        console.log(this.state.obj1);
-        console.log(this.state.sub2);
-        console.log(this.props.name);
-        console.log(this.props.email);
-        console.log(this.props.prn);
+    SubmitAnswer = () => {
+        var assignment_name = "Shift Cipher";
+        var estimated_time_to_complete = "30";
+        var assigned_date = "2018-03-29T13:34:00.000";
+        var due_date = "2018-03-29T13:34:00.000";
+        var completed_count = "0";
+        var description = "Shift Cipher";
+        var type1 = "Subjective";
+        var type2 = "Objective";
+        var question1 = "Explain in brief the working of shift Cipher/Ceaser Cipher?";
+        var question2 = "Shift Cipher is also Known as";
+        var question3 = "Is shift cipher breakable? if yes how? if not why not?";
+        var mark1 = "10";
+        var mark2 = "10";
+        var mark3 = "10";
+        var answer1 = "A shift cipher involves replacing each letter in the message by a letter that is some fixed number of positions further along in the alphabet. We'll call this number the encryption key. It is just the length of the shift we are using.";
+        var answer2 = "Hill Cipher";
+        var answer3 = "A shift cipher involves replacing each letter in the message by a letter that is some fixed number of positions further along in the alphabet. We'll call this number the encryption key. It is just the length of the shift we are using."
+        
+        var assignment = JSON.stringify({
+            name: assignment_name,
+            estimated_time_to_complete: estimated_time_to_complete,
+            assigned_date: assigned_date,
+            due_date: due_date,
+            completed_count: completed_count,
+            description: description,
+            questions: [
+                {
+                    type: type1,
+                    question: question1,
+                    marks: mark1,
+                    answer: answer1,
+                    attempted:[
+                        {
+                            student_name: this.props.name,
+                            prn: this.props.prn,
+                            student_answer: this.state.sub1,
+                            correct: "True",
+                            student_marks: "8",
+                            date: "2018-03-29T13:34:00.000",
+                            time: "20"
+                        }
+                    ]
+                },
+                {
+                    type: type2,
+                    question: question2,
+                    marks: mark1,
+                    answer: answer2,
+                    attempted:[
+                        {
+                            student_name: this.props.name,
+                            prn: this.props.prn,
+                            student_answer: this.state.sub1,
+                            correct: "True",
+                            student_marks: "8",
+                            date: "2018-03-29T13:34:00.000",
+                            time: "20"
+                        }
+                    ]
+                },
+                {
+                    type: type1,
+                    question: question3,
+                    marks: mark1,
+                    answer: answer3,
+                    attempted:[
+                        {
+                            student_name: this.props.name,
+                            prn: this.props.prn,
+                            student_answer: this.state.sub1,
+                            correct: "True",
+                            student_marks: "8",
+                            date: "2018-03-29T13:34:00.000",
+                            time: "20"
+                        }
+                    ]
+                }
+            ]
+        });
+
+        console.log(assignment);
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        axios.post('http://localhost:5000/assignment', assignment, config)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+        
     }
 
     render(){
@@ -291,7 +378,11 @@ class demo extends Component {
                         <ListGroupItemText>
                             <Input type="textarea" rows="8" id="sub2" name="sub2" onChange={this.handleChange}></Input>
                             <br/>
-                            <Button color="primary" onClick={this.show}>Submit Answer</Button>
+                        </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        <ListGroupItemText>
+                            <Button color="primary" onClick={this.SubmitAnswer} style={{marginLeft: "40%"}}>Submit Answer</Button>
                         </ListGroupItemText>
                     </ListGroupItem>
                 </ListGroup>
