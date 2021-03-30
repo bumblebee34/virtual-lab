@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Jumbotron, Container, ListGroup, ListGroupItemHeading, ListGroupItem, ListGroupItemText, Input, Button, Form, FormGroup, Label, Breadcrumb, BreadcrumbItem, ButtonGroup } from 'reactstrap';
 import imgd from '../shift.png';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class demo extends Component {
 
@@ -11,6 +13,20 @@ class demo extends Component {
         key: 0,
         brute: [],
         bruteStr: "",
+        sub1: "",
+        obj1: "",
+        sub2: "",
+    }
+
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        prn: PropTypes.string.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired,
+        login_msg: PropTypes.string.isRequired,
+        reg_msg: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired
     }
 
     caesarShift = function (str, amount) {
@@ -87,6 +103,15 @@ class demo extends Component {
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    show = () => {
+        console.log(this.state.sub1);
+        console.log(this.state.obj1);
+        console.log(this.state.sub2);
+        console.log(this.props.name);
+        console.log(this.props.email);
+        console.log(this.props.prn);
     }
 
     render(){
@@ -227,9 +252,8 @@ class demo extends Component {
                     <ListGroupItem>
                         <ListGroupItemHeading>Q) Explain in brief the working of shift Cipher/Ceaser Cipher?</ListGroupItemHeading>
                         <ListGroupItemText>
-                            <Input type="textarea" rows="8"></Input>
+                            <Input type="textarea" rows="8" id="sub1" name="sub1" onChange={this.handleChange}></Input>
                             <br/>
-                            <Button color="primary">Submit Answer</Button>
                         </ListGroupItemText>
                     </ListGroupItem>
                     <ListGroupItem>
@@ -239,30 +263,29 @@ class demo extends Component {
                                 <FormGroup tag="fieldset">
                                     <FormGroup check>
                                     <Label check>
-                                        <Input type="radio" name="radio1" />{' '}
+                                        <Input type="radio" id="obj1" name="obj1" onChange={this.handleChange} value="Hill Cipher"/>
                                         Hill Cipher
                                     </Label>
                                     </FormGroup>
                                     <FormGroup check>
                                     <Label check>
-                                        <Input type="radio" name="radio1" />{' '}
+                                        <Input type="radio" id="obj1" name="obj1" onChange={this.handleChange} value="Rail Fence" />
                                         Rail Fence
                                     </Label>
                                     </FormGroup>
                                     <FormGroup check>
                                     <Label check>
-                                        <Input type="radio" name="radio1" />{' '}
+                                        <Input type="radio" id="obj1" name="obj1" onChange={this.handleChange} value="Ceaser Cipher" />
                                         Ceaser Cipher
                                     </Label>
                                     </FormGroup>
                                     <FormGroup check>
                                     <Label check>
-                                        <Input type="radio" name="radio1" />{' '}
+                                        <Input type="radio" id="obj1" name="obj1" onChange={this.handleChange} value="None of these"/>
                                         None of these
                                     </Label>
                                     </FormGroup>
                                     <br/>
-                                    <Button color="primary">Submit Answer</Button>
                                 </FormGroup> 
                             </Form>
                         </ListGroupItemText>
@@ -270,9 +293,9 @@ class demo extends Component {
                     <ListGroupItem>
                         <ListGroupItemHeading>Q) Is shift cipher breakable? if yes how? if not why not?</ListGroupItemHeading>
                         <ListGroupItemText>
-                            <Input type="textarea" rows="8"></Input>
+                            <Input type="textarea" rows="8" id="sub2" name="sub2" onChange={this.handleChange}></Input>
                             <br/>
-                            <Button color="primary">Submit Answer</Button>
+                            <Button color="primary" onClick={this.show}>Submit Answer</Button>
                         </ListGroupItemText>
                     </ListGroupItem>
                 </ListGroup>
@@ -282,4 +305,17 @@ class demo extends Component {
     }
 }
 
-export default demo;
+const mapStateToProps = state => {
+    return{
+        id: state.login.id,
+        name: state.login.name,
+        email: state.login.email,
+        prn: state.login.prn,
+        isAuthenticated: state.login.isAuthenticated,
+        login_msg: state.login.msg,
+        reg_msg: state.register.msg,
+        type: state.login.type
+    }
+}
+
+export default connect(mapStateToProps, {})(demo);

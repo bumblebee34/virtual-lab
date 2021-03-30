@@ -4,6 +4,7 @@ const initialState = {
     id: null,
     name: null,
     email: null,
+    prn: null,
     isAuthenticated: false,
     msg: null,
     type: null
@@ -17,6 +18,7 @@ export default function( state = initialState, action) {
                 id: action.payload.id,
                 name: action.payload.name,
                 email: action.payload.email,
+                prn: action.payload.prn,
                 isAuthenticated: true,
                 msg: null,
                 type: action.payload.type
@@ -27,6 +29,7 @@ export default function( state = initialState, action) {
                 id: null,
                 name: null,
                 email: null,
+                prn: null,
                 isAuthenticated: false,
                 msg: action.payload.msg
             }
