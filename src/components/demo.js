@@ -23,10 +23,6 @@ class demo extends Component {
         name: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
         prn: PropTypes.string.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired,
-        login_msg: PropTypes.string.isRequired,
-        reg_msg: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired
     }
 
     caesarShift = function (str, amount) {
@@ -311,10 +307,6 @@ const mapStateToProps = state => {
         name: state.login.name,
         email: state.login.email,
         prn: state.login.prn,
-        isAuthenticated: state.login.isAuthenticated,
-        login_msg: state.login.msg,
-        reg_msg: state.register.msg,
-        type: state.login.type
     }
 }
 
