@@ -17,6 +17,7 @@ class demo extends Component {
         sub1: "",
         obj1: "",
         sub2: "",
+        submitted: true
     }
 
     static propTypes = {
@@ -98,89 +99,70 @@ class demo extends Component {
         }
     }
 
+    componentDidMount = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        var data = JSON.stringify({
+            name: "Shift Cipher",
+            prn: this.props.prn
+        })
+
+        axios.post('http://localhost:5000/assignment/check_answer', data, config)
+        .then(res => {
+            if(res.data.msg == "Already Submitted")
+                this.setState({ submitted: true});
+            else if(res.data.msg == "Not Submitted")
+            this.setState({ submitted: false});
+        })
+        .catch(e => console.log(e));
+    }
+
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    
+
     SubmitAnswer = () => {
-        var assignment_name = "Shift Cipher";
-        var estimated_time_to_complete = "30";
-        var assigned_date = "2018-03-29T13:34:00.000";
-        var due_date = "2018-03-29T13:34:00.000";
-        var completed_count = "0";
-        var description = "Shift Cipher";
-        var type1 = "Subjective";
-        var type2 = "Objective";
-        var question1 = "Explain in brief the working of shift Cipher/Ceaser Cipher?";
-        var question2 = "Shift Cipher is also Known as";
-        var question3 = "Is shift cipher breakable? if yes how? if not why not?";
-        var mark1 = "10";
-        var mark2 = "10";
-        var mark3 = "10";
-        var answer1 = "A shift cipher involves replacing each letter in the message by a letter that is some fixed number of positions further along in the alphabet. We'll call this number the encryption key. It is just the length of the shift we are using.";
-        var answer2 = "Hill Cipher";
-        var answer3 = "A shift cipher involves replacing each letter in the message by a letter that is some fixed number of positions further along in the alphabet. We'll call this number the encryption key. It is just the length of the shift we are using."
-        
+        this.setState({ submitted: true});
+        var name = "Shift Cipher";
         var assignment = JSON.stringify({
-            name: assignment_name,
-            estimated_time_to_complete: estimated_time_to_complete,
-            assigned_date: assigned_date,
-            due_date: due_date,
-            completed_count: completed_count,
-            description: description,
-            questions: [
-                {
-                    type: type1,
-                    question: question1,
-                    marks: mark1,
-                    answer: answer1,
-                    attempted:[
-                        {
-                            student_name: this.props.name,
-                            prn: this.props.prn,
-                            student_answer: this.state.sub1,
-                            correct: "True",
-                            student_marks: "8",
-                            date: "2018-03-29T13:34:00.000",
-                            time: "20"
-                        }
-                    ]
-                },
-                {
-                    type: type2,
-                    question: question2,
-                    marks: mark1,
-                    answer: answer2,
-                    attempted:[
-                        {
-                            student_name: this.props.name,
-                            prn: this.props.prn,
-                            student_answer: this.state.sub1,
-                            correct: "True",
-                            student_marks: "8",
-                            date: "2018-03-29T13:34:00.000",
-                            time: "20"
-                        }
-                    ]
-                },
-                {
-                    type: type1,
-                    question: question3,
-                    marks: mark1,
-                    answer: answer3,
-                    attempted:[
-                        {
-                            student_name: this.props.name,
-                            prn: this.props.prn,
-                            student_answer: this.state.sub1,
-                            correct: "True",
-                            student_marks: "8",
-                            date: "2018-03-29T13:34:00.000",
-                            time: "20"
-                        }
-                    ]
-                }
-            ]
+            name: name,
+            assignment_attempted:
+            {
+                prn: this.props.prn,
+                date: new Date().toLocaleString()
+            },
+            question1 : {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.sub1,
+                correct: "True",
+                student_marks: "8",
+                date: new Date().toLocaleString(),
+                time: "20"
+            },
+            question2 : {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.obj1,
+                correct: this.state.obj1 == "Hill Cipher" ? "True": "False",
+                student_marks: "8",
+                date: new Date().toLocaleString(),
+                time: "20"
+            },
+            question3: {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.sub2,
+                correct: "True",
+                student_marks: "8",
+                date: new Date().toLocaleString(),
+                time: "20"
+            }
         });
 
         console.log(assignment);
@@ -191,7 +173,7 @@ class demo extends Component {
             }
         }
 
-        axios.post('http://localhost:5000/assignment', assignment, config)
+        axios.post('http://localhost:5000/assignment/add_assignment', assignment, config)
         .then(res => console.log(res))
         .catch(err => console.log(err));
         
@@ -382,7 +364,11 @@ class demo extends Component {
                     </ListGroupItem>
                     <ListGroupItem>
                         <ListGroupItemText>
-                            <Button color="primary" onClick={this.SubmitAnswer} style={{marginLeft: "40%"}}>Submit Answer</Button>
+                            {
+                                this.state.submitted ? 
+                                null :
+                                <Button color="primary" onClick={this.SubmitAnswer} style={{marginLeft: "40%"}}>Submit Answer</Button>
+                            }
                         </ListGroupItemText>
                     </ListGroupItem>
                 </ListGroup>
