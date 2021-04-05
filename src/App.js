@@ -16,6 +16,7 @@ import demo1 from './components/demo1';
 import demo2 from './components/demo2';
 import demo3 from './components/demo3';
 import demo4 from './components/demo4';
+import demoAssesment from './components/demoAssesment';
 
 class App extends Component{
     render() {
@@ -34,7 +35,7 @@ class App extends Component{
                         <Route path='/demo2' component={demo2} />
                         <Route path='/demo3' component={demo3} />
                         <Route path='/demo4' component={demo4} />
-
+                        <Route path='/demoAssesment' component={demoAssesment} />
                     </Switch>
                 </BrowserRouter>
             </Provider>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Card, CardImg, CardImgOverlay, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Container, Row
+  CardTitle, CardSubtitle, Button, Container, Row,Col
 } from 'reactstrap';
 import image from '../logo.jpeg';
 import { ASSIGNMENTS } from '../assets/assignments/assignments';
@@ -45,7 +45,14 @@ class FacultyMain extends Component {
                                 <CardTitle tag="h5">Shift Cipher</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
                                 <CardText> Due: 20/12/2020 </CardText>
-                                <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                <Row>
+                                    <Col>
+                                    <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                    </Col>
+                                    <Col>
+                                    <Button color="warning" onClick={() => this.props.history.push('/demoAssesment')}>Assesment</Button>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </div>
@@ -56,7 +63,14 @@ class FacultyMain extends Component {
                                 <CardTitle tag="h5">Hill Cipher</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
                                 <CardText> Due: 20/12/2020 </CardText>
-                                <Button color="primary" onClick={() => this.props.history.push('/demo1')}>Open</Button>
+                                <Row>
+                                    <Col>
+                                    <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                    </Col>
+                                    <Col>
+                                    <Button color="warning" onClick={() => this.props.history.push('/demo')}>Assesment</Button>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </div>
@@ -67,7 +81,14 @@ class FacultyMain extends Component {
                                 <CardTitle tag="h5">RSA Algorithm</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
                                 <CardText> Due: 20/12/2020 </CardText>
-                                <Button color="primary" onClick={() => this.props.history.push('/demo2')}>Open</Button>
+                                <Row>
+                                    <Col>
+                                    <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                    </Col>
+                                    <Col>
+                                    <Button color="warning" onClick={() => this.props.history.push('/demo')}>Assesment</Button>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </div>
@@ -78,7 +99,14 @@ class FacultyMain extends Component {
                                 <CardTitle tag="h5">Steganography</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
                                 <CardText> Due: 20/12/2020 </CardText>
-                                <Button color="primary" onClick={() => this.props.history.push('/demo3')}>Open</Button>
+                                <Row>
+                                    <Col>
+                                    <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                    </Col>
+                                    <Col>
+                                    <Button color="warning" onClick={() => this.props.history.push('/demo')}>Assesment</Button>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </div>
@@ -89,7 +117,14 @@ class FacultyMain extends Component {
                                 <CardTitle tag="h5">Data Encryption Standard DES</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted"> Subject: Cryptography and Network Security </CardSubtitle>
                                 <CardText> Due: 20/12/2020 </CardText>
-                                <Button color="primary" onClick={() => this.props.history.push('/demo4')}>Open</Button>
+                                <Row>
+                                    <Col>
+                                    <Button color="primary" onClick={() => this.props.history.push('/demo')}>Open</Button>
+                                    </Col>
+                                    <Col>
+                                    <Button color="warning" onClick={() => this.props.history.push('/demo')}>Assesment</Button>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </div>

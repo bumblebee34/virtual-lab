@@ -25,6 +25,110 @@ class demo extends Component {
         name: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
         prn: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired
+    }
+
+    componentDidMount = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        var data = JSON.stringify({
+            name: "Shift Cipher",
+            prn: this.props.prn
+        })
+
+        axios.post('http://localhost:5000/assignment/check_answer', data, config)
+        .then(res => {
+            if(res.data.msg == "Already Submitted")
+                this.setState({ submitted: true});
+            else if(res.data.msg == "Not Submitted")
+            this.setState({ submitted: false});
+        })
+        .catch(e => console.log(e));
+    }
+
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    
+
+    SubmitAnswer = () => {
+        this.setState({ submitted: true});
+        var name = "Shift Cipher";
+        var keywords = ["shift", "cipher", "fixed", "key", "letter"];
+        var mark1, mark2;
+        var cnt = 0;
+        var sub1 = this.state.sub1.toLowerCase();
+        keywords.forEach(element => {
+            if(sub1.includes(element))
+                cnt++;
+        });
+        mark1 = (cnt/keywords.length)*100;
+        cnt = 0;
+        var sub2 = this.state.sub2.toLowerCase();
+        keywords.forEach(element => {
+            if(sub2.includes(element))
+                cnt++;
+        });
+        mark2 = (cnt/keywords.length)*100;
+        var assignment = JSON.stringify({
+            name: name,
+            assignment_attempted:
+            {
+                prn: this.props.prn,
+                date: new Date().toLocaleString(),
+                que1_ans: this.state.sub1,
+                que1_mark: mark1.toString(),
+                que2_ans: this.state.obj1,
+                que2_mark: this.state.obj1 == "Hill Cipher" ? "10": "0",
+                que3_ans: this.state.sub2,
+                que3_mark: mark2.toString(),
+
+            },
+            question1 : {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.sub1,
+                correct: "True",
+                student_marks: mark1.toString(),
+                date: new Date().toLocaleString(),
+                time: "20"
+            },
+            question2 : {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.obj1,
+                correct: this.state.obj1 == "Hill Cipher" ? "True": "False",
+                student_marks: this.state.obj1 == "Hill Cipher" ? "10": "0",
+                date: new Date().toLocaleString(),
+                time: "20"
+            },
+            question3: {
+                student_name: this.props.name,
+                prn: this.props.prn,
+                student_answer: this.state.sub2,
+                correct: "True",
+                student_marks: mark2.toString(),
+                date: new Date().toLocaleString(),
+                time: "20"
+            }
+        });
+
+        console.log(assignment);
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        axios.post('http://localhost:5000/assignment/add_assignment', assignment, config)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+        
     }
 
     caesarShift = function (str, amount) {
@@ -99,101 +203,28 @@ class demo extends Component {
         }
     }
 
-    componentDidMount = () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        var data = JSON.stringify({
-            name: "Shift Cipher",
-            prn: this.props.prn
-        })
-
-        axios.post('http://localhost:5000/assignment/check_answer', data, config)
-        .then(res => {
-            if(res.data.msg == "Already Submitted")
-                this.setState({ submitted: true});
-            else if(res.data.msg == "Not Submitted")
-            this.setState({ submitted: false});
-        })
-        .catch(e => console.log(e));
-    }
-
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    
-
-    SubmitAnswer = () => {
-        this.setState({ submitted: true});
-        var name = "Shift Cipher";
-        var assignment = JSON.stringify({
-            name: name,
-            assignment_attempted:
-            {
-                prn: this.props.prn,
-                date: new Date().toLocaleString()
-            },
-            question1 : {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.sub1,
-                correct: "True",
-                student_marks: "8",
-                date: new Date().toLocaleString(),
-                time: "20"
-            },
-            question2 : {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.obj1,
-                correct: this.state.obj1 == "Hill Cipher" ? "True": "False",
-                student_marks: "8",
-                date: new Date().toLocaleString(),
-                time: "20"
-            },
-            question3: {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.sub2,
-                correct: "True",
-                student_marks: "8",
-                date: new Date().toLocaleString(),
-                time: "20"
-            }
-        });
-
-        console.log(assignment);
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        axios.post('http://localhost:5000/assignment/add_assignment', assignment, config)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-        
-    }
-
     render(){
         return(
             <Container>
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to="/studentmain">Dashboard</Link></BreadcrumbItem>
-                    <BreadcrumbItem><Link to="/subjectassignments">Subject</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Shift Cipher</BreadcrumbItem>
-                </Breadcrumb>
+                {
+                    this.props.type == "Faculty" ? 
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/facultymain">Dashboard</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Shift Cipher</BreadcrumbItem>
+                    </Breadcrumb>:
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/studentmain">Dashboard</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/subjectassignments">Dashboard</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Shift Cipher</BreadcrumbItem>
+                    </Breadcrumb>
+                }
+                
                 <Jumbotron>
                     <h1 className="display-3">Shift Cipher</h1>
                     <p className="lead"></p>
                     <hr className="my-2" />
                     <p className="lead">Created on : 20 November, 2020 <br/>  Last edit : 1 December, 2020 <br/>   Due date : 20 December, 2020</p>
                     <p className="lead">
-                        <Button color="success">Mark as done</Button>
                     </p>
                 </Jumbotron>
                 <ListGroup>
@@ -371,6 +402,11 @@ class demo extends Component {
                             }
                         </ListGroupItemText>
                     </ListGroupItem>
+                    {/* <ListGroupItem>
+                        <ListGroupItemText>
+                            <iframe src="https://www.jdoodle.com/embed/v0/3a9X" width="100%" height="554"></iframe>
+                        </ListGroupItemText>
+                    </ListGroupItem> */}
                 </ListGroup>
                 <br />
             </Container>
@@ -384,6 +420,7 @@ const mapStateToProps = state => {
         name: state.login.name,
         email: state.login.email,
         prn: state.login.prn,
+        type: state.login.type
     }
 }
 
