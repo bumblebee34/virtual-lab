@@ -17,7 +17,9 @@ class demo extends Component {
         sub1: "",
         obj1: "",
         sub2: "",
-        submitted: true
+        submitted: true,
+        que1: [],
+        que3: []
     }
 
     static propTypes = {
@@ -58,63 +60,51 @@ class demo extends Component {
     SubmitAnswer = () => {
         this.setState({ submitted: true});
         var name = "Shift Cipher";
-        var keywords = ["shift", "cipher", "fixed", "key", "letter"];
-        var mark1, mark2;
+        var keywords1 = {
+            "shift": 1, "cipher": 1, "fixed": 0.5, "key": 0.5, "letter": 1
+        }
+        var mark1, mark2, mark3;
         var cnt = 0;
         var sub1 = this.state.sub1.toLowerCase();
-        keywords.forEach(element => {
-            if(sub1.includes(element))
-                cnt++;
-        });
-        mark1 = (cnt/keywords.length)*100;
+        for(var key in keywords1) {
+            if(sub1.includes(key))
+                cnt += keywords1[key];
+        };
+        mark1 = cnt;
         cnt = 0;
         var sub2 = this.state.sub2.toLowerCase();
-        keywords.forEach(element => {
-            if(sub2.includes(element))
-                cnt++;
-        });
-        mark2 = (cnt/keywords.length)*100;
+        var keywords2 = {"brute": 2, "force": 2};
+        for(var key in keywords2) {
+            if(sub2.includes(key))
+                cnt += keywords2[key];
+        };
+        mark3 = cnt;
+        mark2 = this.state.obj1 == "Hill Cipher" ? 2 : 0;
         var assignment = JSON.stringify({
             name: name,
-            assignment_attempted:
-            {
-                prn: this.props.prn,
-                date: new Date().toLocaleString(),
-                que1_ans: this.state.sub1,
-                que1_mark: mark1.toString(),
-                que2_ans: this.state.obj1,
-                que2_mark: this.state.obj1 == "Hill Cipher" ? "10": "0",
-                que3_ans: this.state.sub2,
-                que3_mark: mark2.toString(),
+            prn: this.props.prn,
+            date: new Date().toLocaleString(),
+            total_marks: (mark1+mark2+mark3).toString(),
+            remark: "",
+            questions: [
+                {
+                    que_ans: this.state.sub1,
+                    student_mark: mark1.toString(),
+                    marks: "4"
+                },
+                {
+                    que_ans: this.state.obj1,
+                    student_mark: mark2.toString(),
+                    marks: "2"
 
-            },
-            question1 : {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.sub1,
-                correct: "True",
-                student_marks: mark1.toString(),
-                date: new Date().toLocaleString(),
-                time: "20"
-            },
-            question2 : {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.obj1,
-                correct: this.state.obj1 == "Hill Cipher" ? "True": "False",
-                student_marks: this.state.obj1 == "Hill Cipher" ? "10": "0",
-                date: new Date().toLocaleString(),
-                time: "20"
-            },
-            question3: {
-                student_name: this.props.name,
-                prn: this.props.prn,
-                student_answer: this.state.sub2,
-                correct: "True",
-                student_marks: mark2.toString(),
-                date: new Date().toLocaleString(),
-                time: "20"
-            }
+                },
+                {
+                    que_ans: this.state.sub2,
+                    student_mark: mark3.toString(),
+                    marks: "4"
+
+                }
+            ]
         });
 
         console.log(assignment);
@@ -125,7 +115,7 @@ class demo extends Component {
             }
         }
 
-        axios.post('http://localhost:5000/assignment/add_assignment', assignment, config)
+        axios.post('http://localhost:5000/assignment/add_submission', assignment, config)
         .then(res => console.log(res))
         .catch(err => console.log(err));
         
@@ -214,7 +204,7 @@ class demo extends Component {
                     </Breadcrumb>:
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/studentmain">Dashboard</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link to="/subjectassignments">Dashboard</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/subjectassignments">Subject Assignments</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Shift Cipher</BreadcrumbItem>
                     </Breadcrumb>
                 }
@@ -389,7 +379,7 @@ class demo extends Component {
                     <ListGroupItem>
                         <ListGroupItemHeading>Q) Is shift cipher breakable? if yes how? if not why not?</ListGroupItemHeading>
                         <ListGroupItemText>
-                            <Input type="textarea" rows="8" id="sub2" name="sub2" onChange={this.handleChange}></Input>
+                            <Input type="textarea" rows="8" id="sub2" name="sub2" onChange={this.handleChange} spellCheck="true"></Input>
                             <br/>
                         </ListGroupItemText>
                     </ListGroupItem>

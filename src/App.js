@@ -17,6 +17,8 @@ import demo2 from './components/demo2';
 import demo3 from './components/demo3';
 import demo4 from './components/demo4';
 import demoAssesment from './components/demoAssesment';
+import StudentData from './components/studentData';
+import StudentAssignmentData from './components/studentAssignmentData';
 
 class App extends Component{
     render() {
@@ -36,6 +38,8 @@ class App extends Component{
                         <Route path='/demo3' component={demo3} />
                         <Route path='/demo4' component={demo4} />
                         <Route path='/demoAssesment' component={demoAssesment} />
+                        <Route path='/studentdata' component={StudentData} />
+                        <Route path='/studentassignmentdata' component={StudentAssignmentData} />
                     </Switch>
                 </BrowserRouter>
             </Provider>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, ListGroup, ListGroupItem, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
 
 class StudentMain extends Component {
 
@@ -10,6 +10,9 @@ class StudentMain extends Component {
                 <Breadcrumb>
                     <BreadcrumbItem active>Dashboard</BreadcrumbItem>
                 </Breadcrumb>
+                <br/>
+                <Button color="primary" onClick={() => this.props.history.push('/studentassignmentdata')}>Assignments Data</Button>
+                <div><br/></div>
                 <ListGroup>
                     <ListGroupItem className="btn" style={{ textAlign: "left" }} onClick={() => this.props.history.push('/subjectassignments')}>3IT401 - Cryptography and Network Security</ListGroupItem>
                     {/* <ListGroupItem className="btn" style={{ textAlign: "left" }}>3IC401 - Management and Economics</ListGroupItem>

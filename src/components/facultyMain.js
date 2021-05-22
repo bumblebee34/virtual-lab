@@ -35,7 +35,7 @@ class FacultyMain extends Component {
         return (
             <Container>
                 <Row>
-                    <Button color="primary" onClick={() => this.props.history.push("/create")}>Create Assignment</Button>
+                    <Button color="primary" onClick={() => this.props.history.push("/studentdata")}>Student Data</Button>
                 </Row>
                 <Row className="d-flex">
                     <div className="col-md-3 m-4">
