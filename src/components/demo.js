@@ -61,7 +61,7 @@ class demo extends Component {
         this.setState({ submitted: true});
         var name = "Shift Cipher";
         var keywords1 = {
-            "shift": 1, "cipher": 1, "fixed": 0.5, "key": 0.5, "letter": 1
+            "shift": 2, "cipher": 1, "fixed": 0.5, "key": 0.25, "letter": 0.25
         }
         var mark1, mark2, mark3;
         var cnt = 0;
