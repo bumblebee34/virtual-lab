@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/virtual-lab/static/css/main.8462d6fc.chunk.css",
+    "main.js": "/virtual-lab/static/js/main.0574b7f1.chunk.js",
+    "main.js.map": "/virtual-lab/static/js/main.0574b7f1.chunk.js.map",
+    "runtime-main.js": "/virtual-lab/static/js/runtime-main.809c63f0.js",
+    "runtime-main.js.map": "/virtual-lab/static/js/runtime-main.809c63f0.js.map",
+    "static/css/2.1a02f21c.chunk.css": "/virtual-lab/static/css/2.1a02f21c.chunk.css",
+    "static/js/2.2696bf36.chunk.js": "/virtual-lab/static/js/2.2696bf36.chunk.js",
+    "static/js/2.2696bf36.chunk.js.map": "/virtual-lab/static/js/2.2696bf36.chunk.js.map",
+    "static/js/3.aade2964.chunk.js": "/virtual-lab/static/js/3.aade2964.chunk.js",
+    "static/js/3.aade2964.chunk.js.map": "/virtual-lab/static/js/3.aade2964.chunk.js.map",
+    "index.html": "/virtual-lab/index.html",
+    "static/css/2.1a02f21c.chunk.css.map": "/virtual-lab/static/css/2.1a02f21c.chunk.css.map",
+    "static/css/main.8462d6fc.chunk.css.map": "/virtual-lab/static/css/main.8462d6fc.chunk.css.map",
+    "static/js/2.2696bf36.chunk.js.LICENSE.txt": "/virtual-lab/static/js/2.2696bf36.chunk.js.LICENSE.txt",
+    "static/media/demo1_1.6e82e94d.png": "/virtual-lab/static/media/demo1_1.6e82e94d.png",
+    "static/media/demo1_2.eee95ad1.png": "/virtual-lab/static/media/demo1_2.eee95ad1.png",
+    "static/media/demo1_3.422848ce.png": "/virtual-lab/static/media/demo1_3.422848ce.png",
+    "static/media/demo1_4.f75410a9.png": "/virtual-lab/static/media/demo1_4.f75410a9.png",
+    "static/media/demo1_5.39aa13dd.png": "/virtual-lab/static/media/demo1_5.39aa13dd.png",
+    "static/media/demo2_1.348ca5cd.png": "/virtual-lab/static/media/demo2_1.348ca5cd.png",
+    "static/media/demo3_1.2b145365.png": "/virtual-lab/static/media/demo3_1.2b145365.png",
+    "static/media/demo4_1.d9cb9366.png": "/virtual-lab/static/media/demo4_1.d9cb9366.png",
+    "static/media/demo4_2.a8073f76.png": "/virtual-lab/static/media/demo4_2.a8073f76.png",
+    "static/media/demo4_3.80c7be6d.png": "/virtual-lab/static/media/demo4_3.80c7be6d.png",
+    "static/media/shift.2a823030.png": "/virtual-lab/static/media/shift.2a823030.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.809c63f0.js",
+    "static/css/2.1a02f21c.chunk.css",
+    "static/js/2.2696bf36.chunk.js",
+    "static/css/main.8462d6fc.chunk.css",
+    "static/js/main.0574b7f1.chunk.js"
+  ]
+}
