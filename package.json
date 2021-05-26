@@ -1,4 +1,6 @@
 {
+  
+  "homepage": "http://bumblebee34.github.io/virtual-lab",
   "name": "virtual-lab",
   "version": "0.1.0",
   "private": true,
@@ -33,9 +35,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b master -d build"
   },
-  "homepage": "http://bumblebee34.github.io/virtual-lab",
   "eslintConfig": {
     "extends": [
       "react-app",
