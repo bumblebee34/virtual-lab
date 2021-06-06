@@ -13,7 +13,7 @@ export const loginStudent = ({ email_login, password_login }) => dispatch => {
     // Request body
     const body = JSON.stringify({ email_login, password_login });
 
-    axios.post('https://tranquil-cliffs-55530.herokuapp.com/user/login/student', body, config)
+    axios.post('http://localhost:5000/user/login/student', body, config)
         .then(res =>{ 
             localStorage.setItem("email", res.data.email);
             localStorage.setItem("name", res.data.name);
